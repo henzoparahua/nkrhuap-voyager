@@ -1,0 +1,3 @@
+[submodule "DirectX/Chili-Shallow-Dive/d3d12-shallow"]
+	path = DirectX/Chili-Shallow-Dive/d3d12-shallow
+	url = https://github.com/planetchili/d3d12-shallow.git
