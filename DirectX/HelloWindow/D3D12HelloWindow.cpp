@@ -211,7 +211,7 @@ void D3D12HelloWindow::LoadAssets()
 	//	Define the geometry of the object rendered
 		Vertex triangleVertices[] =
 		{
-			{ {   0.0f,  0.4f * m_aspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
+			{ {   0.0f,  0.3f * m_aspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
 			{ {  0.5f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
 			{ { -0.5f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } }
 		};
