@@ -11,7 +11,6 @@
   <Folder Name="/DirectX/">
     <Project Path="DirectX/HelloWindow/HelloDoritos.vcxproj" Id="7a622d1b-7e40-4cad-a02b-610e1236b36b" />
   </Folder>
-  <Folder Name="/DirectX/Chili Framework/" />
   <Folder Name="/DirectX/Math/">
     <Project Path="DirectX/dxmath-floating-point-imprecision/dxmath-floating-point-imprecision.vcxproj" Id="6e13e5eb-e674-49ae-8a32-2b3d4ca8e07e" />
     <Project Path="DirectX/dxmath-matrix-sample/dxmath-matrix-sample.vcxproj" Id="800ec596-6351-4db8-a3f7-34066a1ca289" />

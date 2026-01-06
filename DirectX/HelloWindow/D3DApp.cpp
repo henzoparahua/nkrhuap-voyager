@@ -36,9 +36,22 @@ void D3DApp::LoadPipeline()
 	}
 #endif
 
+//	Factories are the entry point to the DirectX 12 API, and allow
+//	us to find adapters that we can use to execute DirectX commands.
 	ComPtr<IDXGIFactory4> factory;
 	ThrowIfFailed(CreateDXGIFactory2(dxgiFactoryFlags, IID_PPV_ARGS(&factory)));
 
+//	An adapter provides information on the physical properties of a
+//	given DirectX device. You can use it to query for the current GPU's
+//	name, manufacturer, how much memory it has, and so on.
+
+//	There are two types of adapters: software and hardware; MS Windows always 
+//	includes a software based DirectX implementation that can be used in the 
+//	event of there being no dedicated hardware such as discrete or integrated GPU.
+
+//	A device is the primary entry point to the DirectX API, giving you access
+//	to the inner parts of the API. This is the key to accessing important data
+//	structures such as pipelines, shader blobs, render states, resource barriers...
 	if (m_useWarpDevice)
 	{
 		ComPtr<IDXGIAdapter> warpAdapter;
@@ -62,6 +75,9 @@ void D3DApp::LoadPipeline()
 	}
 
 //	Describe and create the Command Queue
+//	A command queue allows us to submit groups of draw calls, 
+//	known as command lists, together to execute in order, thus 
+//	allowing a GPU to stay busy and optimize its execution time.
 	D3D12_COMMAND_QUEUE_DESC queueDesc = {};
 	queueDesc.Flags = D3D12_COMMAND_QUEUE_FLAG_NONE;
 	queueDesc.Type = D3D12_COMMAND_LIST_TYPE_DIRECT;
@@ -69,6 +85,8 @@ void D3DApp::LoadPipeline()
 	ThrowIfFailed(m_device->CreateCommandQueue(&queueDesc, IID_PPV_ARGS(&m_commandQueue)));
 
 //	Describe and create the Swap Chain
+//	SwapChains handle swapping and allocating back buffers 
+//	to display what you are rendering to a given window.
 	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {};
 	swapChainDesc.BufferCount = FrameCount;
 	swapChainDesc.Width = m_width;
@@ -95,6 +113,8 @@ void D3DApp::LoadPipeline()
 	m_frameIndex = m_swapChain->GetCurrentBackBufferIndex();
 
 //	Create descriptor heaps.
+//	Descriptor Heaps are objects that handle memory allocation required
+//	for storing the descriptions of objects that shaders reference.
 	{
 	//	Describe and create a render target view (RTV) Descriptor Heap.
 		D3D12_DESCRIPTOR_HEAP_DESC rtvHeapDesc = {};
@@ -129,6 +149,8 @@ void D3DApp::LoadPipeline()
 void D3DApp::LoadAssets()
 {
 //	Create an empty root signature.
+//	Root Signatures are objects that define what type of resource are accessible 
+//	to shaders, be it constant buffers, structured buffers, samplers, textures, etc. 
 	{
 		CD3DX12_ROOT_SIGNATURE_DESC rootSignatureDesc;
 		rootSignatureDesc.Init(0, nullptr, 0, nullptr,
@@ -156,11 +178,16 @@ void D3DApp::LoadAssets()
 		UINT compileFlags{ 0 };
 #endif
 
+	//	Vertex Shaders execute per vertex, and are perfect for 
+	//	transforming a given object, performing per vertex 
+	//	animations with blend shapes, GPU skinning, etc.
 		ThrowIfFailed(D3DCompileFromFile(
 			GetAssetFullPath(L"shaders.hlsl").c_str(),
 			nullptr, nullptr, "VSMain", "vs_5_0", 
 			compileFlags, 0, &vertexShader, &error));
 
+	//	Pixel Shaders execute per each pixel of your output, including 
+	//	the other attachments that correspond to that pixel coordinate.
 		ThrowIfFailed(D3DCompileFromFile(
 			GetAssetFullPath(L"shaders.hlsl").c_str(),
 			nullptr, nullptr, "PSMain", "ps_5_0",
@@ -177,6 +204,7 @@ void D3DApp::LoadAssets()
 		};
 
 	//	Describe and create the graphics pipeline state object (PSO)
+	//	The Pipeline State describes everything necessary to execute a given raster based draw call.
 		D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc = {};
 		psoDesc.InputLayout = { inputElementDescs, _countof(inputElementDescs) };
 		psoDesc.pRootSignature = m_rootSignature.Get();
@@ -207,13 +235,16 @@ void D3DApp::LoadAssets()
 	ThrowIfFailed(m_commandList->Close());
 
 //	Create the Vertex Buffer
+//	The Vertex Buffer stores the per vertex information available as attributes
+//	in the Vertex Shader. All buffers are ID3D12Resource objects in DirectX 12,
+//	be it Vertex Buffers, Index Buffers, Constant Buffers, etc.
 	{
 	//	Define the geometry of the object rendered
 		Vertex triangleVertices[] =
 		{
-			{ {   0.0f,  0.3f * m_aspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
-			{ {  0.5f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
-			{ { -0.5f, -0.25f * m_aspectRatio, 0.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } }
+			{ {   0.0f,  0.3f * m_aspectRatio, 0.0f }, {  0.7f, 0.96f,  1.0f, 1.0f } },
+			{ {  0.5f, -0.25f * m_aspectRatio, 0.0f }, { 0.87f, 0.61f, 0.92f, 1.0f } },
+			{ { -0.5f, -0.25f * m_aspectRatio, 0.0f }, { 0.18f, 0.53f,  0.8f, 1.0f } }
 		};
 
 		const UINT vertexBufferSize{ sizeof(triangleVertices) };
@@ -243,6 +274,8 @@ void D3DApp::LoadAssets()
 	}
 
 //	Create synchronization objects and wait until assets have been uploaded to the GPU.
+//	A Fence lets your program know when certain tasks have been executed by the GPU, be
+//	it uploads to GPU exclusive memory, or when finished preseting to the screen.
 	{
 		ThrowIfFailed(m_device->CreateFence(0, 
 			D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&m_fence)));
@@ -303,6 +336,9 @@ void D3DApp::PopulateCommandList()
 		D3D12_RESOURCE_STATE_PRESENT,
 		D3D12_RESOURCE_STATE_RENDER_TARGET);
 
+//	A barrier lets the driver know how a resource should be used in upcoming commands.
+//	This can be useful if say, you're writing to a texture, and you want to copy that
+//	texture to another texture (such as the swapchain's render attachment).
 	m_commandList->ResourceBarrier(1, &barrierToRT);
 
 	CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(
