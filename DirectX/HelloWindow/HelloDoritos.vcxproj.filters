@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D3D12HelloWindow.cpp">
+    <ClCompile Include="D3DApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DXSample.cpp">
@@ -32,7 +32,7 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D3D12HelloWindow.h">
+    <ClInclude Include="D3DApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DXSample.h">

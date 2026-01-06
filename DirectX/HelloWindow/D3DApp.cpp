@@ -1,6 +1,6 @@
-#include "D3D12HelloWindow.h"
+#include "D3DApp.h"
 
-D3D12HelloWindow::D3D12HelloWindow(UINT width, UINT height, std::wstring name) :
+D3DApp::D3DApp(UINT width, UINT height, std::wstring name) :
 	DXSample(width, height, name),
 	m_frameIndex(0),
 	m_viewport(0.0f, 0.0f, static_cast<float>(width), static_cast<float>(height)),
@@ -10,14 +10,14 @@ D3D12HelloWindow::D3D12HelloWindow(UINT width, UINT height, std::wstring name) :
 
 }
 
-void D3D12HelloWindow::OnInit()
+void D3DApp::OnInit()
 {
 	LoadPipeline();
 	LoadAssets();
 }
 
 //	Load the rendering pipeline dependencies.
-void D3D12HelloWindow::LoadPipeline()
+void D3DApp::LoadPipeline()
 {
 	UINT dxgiFactoryFlags{ 0 };
 
@@ -126,7 +126,7 @@ void D3D12HelloWindow::LoadPipeline()
 
 
 //	Load the sample assets.
-void D3D12HelloWindow::LoadAssets()
+void D3DApp::LoadAssets()
 {
 //	Create an empty root signature.
 	{
@@ -260,9 +260,9 @@ void D3D12HelloWindow::LoadAssets()
 	}
 }
 
-void D3D12HelloWindow::OnUpdate() { }
+void D3DApp::OnUpdate() { }
 
-void D3D12HelloWindow::OnRender()
+void D3DApp::OnRender()
 {
 	PopulateCommandList();
 
@@ -274,14 +274,14 @@ void D3D12HelloWindow::OnRender()
 	WaitForPreviousFrame();
 }
 
-void D3D12HelloWindow::OnDestroy()
+void D3DApp::OnDestroy()
 {
 	WaitForPreviousFrame();
 
 	CloseHandle(m_fenceEvent);
 }
 
-void D3D12HelloWindow::PopulateCommandList()
+void D3DApp::PopulateCommandList()
 {
 //	Command List Allocators can only be reset when the associated command lists
 //	have finished execution on the GPU; apps should use fences to determine GPU
@@ -331,7 +331,7 @@ void D3D12HelloWindow::PopulateCommandList()
 	ThrowIfFailed(m_commandList->Close());
 }
 
-void D3D12HelloWindow::WaitForPreviousFrame()
+void D3DApp::WaitForPreviousFrame()
 {
 	const UINT64 fence{ m_fenceValue };
 	ThrowIfFailed(m_commandQueue->Signal(m_fence.Get(), fence));

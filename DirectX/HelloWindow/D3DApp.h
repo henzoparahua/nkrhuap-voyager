@@ -5,7 +5,7 @@
 using namespace DirectX;
 using Microsoft::WRL::ComPtr;
 
-class D3D12HelloWindow : public DXSample
+class D3DApp : public DXSample
 {
 	static const UINT FrameCount = 2;
 
@@ -47,7 +47,7 @@ class D3D12HelloWindow : public DXSample
 	void WaitForPreviousFrame();
 
 public: 
-	D3D12HelloWindow(UINT width, UINT height, std::wstring name);
+	D3DApp(UINT width, UINT height, std::wstring name);
 
 	virtual void OnInit();
 	virtual void OnUpdate();
