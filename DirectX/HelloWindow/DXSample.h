@@ -25,6 +25,7 @@ public:
 	const WCHAR* GetTitle() const { return m_title.c_str(); }
 
 	void ParseCommandLineArgs(_In_reads_(argc) WCHAR* argv[], int argc);
+
 protected:
 	std::wstring GetAssetFullPath(LPCWSTR assetName);
 

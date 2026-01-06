@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D3D12HelloDoritos.cpp">
+    <ClCompile Include="D3D12HelloWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DXSample.cpp">
@@ -32,7 +32,7 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D3D12HelloDoritos.h">
+    <ClInclude Include="D3D12HelloWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DXSample.h">
@@ -47,5 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="shaders.hlsl">
+      <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
