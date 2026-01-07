@@ -9,7 +9,7 @@
     <Project Path="C++STD/while-statement/while-statement.vcxproj" Id="51c84a30-4562-4957-b6ec-613c34243909" />
   </Folder>
   <Folder Name="/DirectX/">
-    <Project Path="DirectX/HelloWindow/HelloDoritos.vcxproj" Id="7a622d1b-7e40-4cad-a02b-610e1236b36b" />
+    <Project Path="DirectX/HelloDoritos/HelloDoritos.vcxproj" Id="7a622d1b-7e40-4cad-a02b-610e1236b36b" />
   </Folder>
   <Folder Name="/DirectX/Math/">
     <Project Path="DirectX/dxmath-floating-point-imprecision/dxmath-floating-point-imprecision.vcxproj" Id="6e13e5eb-e674-49ae-8a32-2b3d4ca8e07e" />
