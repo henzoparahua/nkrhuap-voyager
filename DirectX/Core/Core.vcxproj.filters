@@ -15,15 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="D3DApp.h">
+    <ClInclude Include="DXSample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DXSampleHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -31,8 +32,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="shaders.hlsl">
-      <Filter>Resource Files</Filter>
-    </CopyFileToFolders>
+    <ClCompile Include="Win32App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DXSample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

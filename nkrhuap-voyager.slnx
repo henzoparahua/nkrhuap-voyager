@@ -9,6 +9,7 @@
     <Project Path="C++STD/while-statement/while-statement.vcxproj" Id="51c84a30-4562-4957-b6ec-613c34243909" />
   </Folder>
   <Folder Name="/DirectX/">
+    <Project Path="DirectX/Core/Core.vcxproj" Id="3491e9da-5e44-4832-ae4d-0ad864b56ab5" />
     <Project Path="DirectX/HelloDoritos/HelloDoritos.vcxproj" Id="7a622d1b-7e40-4cad-a02b-610e1236b36b" />
   </Folder>
   <Folder Name="/DirectX/Math/">

@@ -1,5 +1,6 @@
 #include "Win32App.h"
-				
+#include "DXSample.h"
+
 HWND Win32App::hwnd = nullptr;
 
 int Win32App::Run(DXSample* sample, HINSTANCE hinstance, int cmdshow)

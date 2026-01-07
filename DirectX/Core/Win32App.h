@@ -1,6 +1,4 @@
 #pragma once
-
-#include "DXSample.h"
 #include "stdafx.h"
 
 class DXSample;
@@ -15,4 +13,4 @@ public:
 
 protected:
 	static LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam);
-};
+}; 
