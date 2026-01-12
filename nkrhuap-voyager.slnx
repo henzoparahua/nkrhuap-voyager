@@ -11,6 +11,7 @@
   <Folder Name="/DirectX/">
     <Project Path="DirectX/Core/Core.vcxproj" Id="3491e9da-5e44-4832-ae4d-0ad864b56ab5" />
     <Project Path="DirectX/HelloDoritos/HelloDoritos.vcxproj" Id="7a622d1b-7e40-4cad-a02b-610e1236b36b" />
+    <Project Path="DirectX/HelloTexture/HelloTexture.vcxproj" Id="b098a704-d558-4190-a267-380528378e98" />
   </Folder>
   <Folder Name="/DirectX/Math/">
     <Project Path="DirectX/dxmath-floating-point-imprecision/dxmath-floating-point-imprecision.vcxproj" Id="6e13e5eb-e674-49ae-8a32-2b3d4ca8e07e" />
