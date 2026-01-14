@@ -99,11 +99,7 @@ void D3DApp::LoadPipeline()
 	ComPtr<IDXGISwapChain1> swapChain;
 	ThrowIfFailed(factory->CreateSwapChainForHwnd(
 		m_commandQueue.Get(), // Swap Chain needs the queue so that it can force a flush on it.
-		Win32App::GetHwnd(),
-		&swapChainDesc,
-		nullptr,
-		nullptr,
-		&swapChain
+		Win32App::GetHwnd(), &swapChainDesc, nullptr, nullptr, &swapChain
 	));
 
 	//	TO DO :: Fullscreen Transition
@@ -137,7 +133,6 @@ void D3DApp::LoadPipeline()
 		m_rtvDescriptorSize = m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 	}
 
-
 	//	Create frame resources.
 	{
 		CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(m_rtvHeap->GetCPUDescriptorHandleForHeapStart());
@@ -152,7 +147,6 @@ void D3DApp::LoadPipeline()
 
 	ThrowIfFailed(m_device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&m_commandAllocator)));
 }
-
 
 //	Load the sample assets.
 void D3DApp::LoadAssets()
@@ -325,29 +319,21 @@ void D3DApp::LoadAssets()
 
 		auto defaultTexHeapProps{ CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT) };
 
-		ThrowIfFailed(
-			m_device->CreateCommittedResource(
-				&defaultTexHeapProps,
-				D3D12_HEAP_FLAG_NONE,
-				&textureDesc,
-				D3D12_RESOURCE_STATE_COPY_DEST,
-				nullptr,
-				IID_PPV_ARGS(&m_texture)));
+		ThrowIfFailed(m_device->CreateCommittedResource(
+			&defaultTexHeapProps, D3D12_HEAP_FLAG_NONE,
+			&textureDesc, D3D12_RESOURCE_STATE_COPY_DEST,
+			nullptr, IID_PPV_ARGS(&m_texture)));
 
 		const UINT64 uploadBufferSize{ GetRequiredIntermediateSize(m_texture.Get(), 0, 1) };
 
 		auto uploadBufferHeapProps{ CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD) };
 		auto resourceBufferDescProps{ CD3DX12_RESOURCE_DESC::Buffer(uploadBufferSize) };
 
-		//	Create the GPU upload buffer
-		ThrowIfFailed(
-			m_device->CreateCommittedResource(
-				&uploadBufferHeapProps,
-				D3D12_HEAP_FLAG_NONE,
-				&resourceBufferDescProps,
-				D3D12_RESOURCE_STATE_GENERIC_READ,
-				nullptr,
-				IID_PPV_ARGS(&textureUploadHeap)));
+	//	Create the GPU upload buffer
+		ThrowIfFailed(m_device->CreateCommittedResource(
+			&uploadBufferHeapProps, D3D12_HEAP_FLAG_NONE, 
+			&resourceBufferDescProps, D3D12_RESOURCE_STATE_GENERIC_READ, 
+			nullptr, IID_PPV_ARGS(&textureUploadHeap)));
 
 		//	Copy data to the intermediate upload heap and then schedule a copy from the upload heap to the Texture2D.
 		std::vector<UINT8> texture{ GenerateTextureData() };
@@ -418,16 +404,16 @@ std::vector<UINT8> D3DApp::GenerateTextureData()
 
 		if (i % 2 == j % 2)
 		{
-			pData[n] = 0x00;
-			pData[n + 1] = 0x00;
-			pData[n + 2] = 0x00;
-			pData[n + 3] = 0xff;
+			pData[n] = 0x00;    	// R
+			pData[n + 1] = 0x00;	// G
+			pData[n + 2] = 0x00;	// B
+			pData[n + 3] = 0xff;	// A
 		}
 		else {
-			pData[n] = 0xff;
-			pData[n + 1] = 0xff;
-			pData[n + 2] = 0xff;
-			pData[n + 3] = 0xff;
+			pData[n] = 0xff;		// R
+			pData[n + 1] = 0xff;	// G
+			pData[n + 2] = 0xff;	// B
+			pData[n + 3] = 0xff;	// A
 		}
 	}
 
