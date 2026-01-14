@@ -1,5 +1,4 @@
 #include "DXSample.h"
-#include "stdafx.h"
 
 using namespace Microsoft::WRL;
 
