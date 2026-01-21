@@ -13,7 +13,7 @@ std::ostream& operator<<(std::ostream& stream, const Vertex& vertex)
 	return stream;
 }
 
-void arrerase(const std::vector<Vertex>& vertices)
+void arrerase(std::vector<Vertex>& vertices)
 {
 	vertices.erase(1 + vertices.begin());
 	for (Vertex& v : vertices)
