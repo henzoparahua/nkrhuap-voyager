@@ -14,9 +14,9 @@
     <Project Path="DirectX12/HelloTexture/HelloTexture.vcxproj" Id="b098a704-d558-4190-a267-380528378e98" />
   </Folder>
   <Folder Name="/STD/">
-    <Project Path="Lambda-Expressions/Lambda-Expressions.vcxproj" Id="ec3bbf1f-6750-488d-878b-1ee3f423ed48" />
     <Project Path="STD/Dynamic-Arrays-Optimization-Strategies/Dynamic-Arrays-Optimization-Strategies.vcxproj" Id="0d794147-b854-4088-b9f6-0c5615473d49" />
     <Project Path="STD/Dynamic-Arrays/Dynamic-Arrays.vcxproj" Id="6cd7f82b-22bf-4b1c-9e46-9cafeaa890da" />
+    <Project Path="STD/Lambda-Expressions/Lambda-Expressions.vcxproj" Id="ec3bbf1f-6750-488d-878b-1ee3f423ed48" />
   </Folder>
   <Folder Name="/Win32/">
     <Project Path="Core/Core.vcxproj" Id="3491e9da-5e44-4832-ae4d-0ad864b56ab5" />
