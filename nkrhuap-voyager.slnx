@@ -13,6 +13,9 @@
     <Project Path="DirectX12/HelloDoritos/HelloDoritos.vcxproj" Id="7a622d1b-7e40-4cad-a02b-610e1236b36b" />
     <Project Path="DirectX12/HelloTexture/HelloTexture.vcxproj" Id="b098a704-d558-4190-a267-380528378e98" />
   </Folder>
+  <Folder Name="/STD/">
+    <Project Path="STD/Dynamic-Arrays/Dynamic-Arrays.vcxproj" Id="6cd7f82b-22bf-4b1c-9e46-9cafeaa890da" />
+  </Folder>
   <Folder Name="/Win32/">
     <Project Path="Core/Core.vcxproj" Id="3491e9da-5e44-4832-ae4d-0ad864b56ab5" />
   </Folder>
