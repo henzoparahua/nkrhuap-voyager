@@ -1,13 +1,21 @@
+#include <iostream>
+#include <vector>
 #include <algorithm>
 #include <cmath>
 
-void abssort(float* x, unsigned n)
+int main()
 {
-	std::sort(x, x + n,
-		// BEGINS Lambda expression
+	std::vector<float> nums = { -50.0f, 2.5f, -1.0f, 10.0f, -0.1f, 100.0f };
+
+//	Numbers ordered by magnitude, not value.
+	std::sort(nums.begin(), nums.end(),
 		[](float a, float b) {
 			return (std::abs(a) < std::abs(b));
 		}
-		// ENDS Lambda expression
 	);
+
+	for (float n : nums)
+		std::cout << n << " ";
+
+	return 0;
 }
